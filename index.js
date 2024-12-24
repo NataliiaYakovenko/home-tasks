@@ -1,30 +1,25 @@
 /*
-Знайди Середнє
-Знайти середнє (середнє) списку чисел у масиві.
+Напишіть функцію для отримання першого елемента(ів) послідовності. 
+Передача параметра n (за замовчуванням=1) поверне перші n елементів послідовності.
 
-Інформація
-Щоб знайти середнє (середнє) набору чисел, додайте всі числа разом і поділіть на кількість значень у списку.
-
-Для прикладу список 1, 3, 5, 7
-
-1. Складіть усі числа
-
-1+3+5+7 = 16
-2. Розділіть на кількість значень у списку. У цьому прикладі в списку є 4 номери.
-
-16/4 = 4
-3. Середнє (або середнє) цього списку дорівнює 4
-
+Якщо n == 0 повертає порожню послідовність []
+Examples
+var arr = ['a', 'b', 'c', 'd', 'e'];
+first(arr) //=> ['a'];
+first(arr, 2) //=> ['a', 'b']
+first(arr, 3) //=> ['a', 'b', 'c'];
+first(arr, 0) //=> [];
  */
 
-const numbers = [1,3,5,7]
-//1.
-let summa = 0;
-for(let i = 0;i < numbers.length;i++){
-    summa +=numbers[i];
+const array = ['a', 'b', 'c', 'd', 'e'];
+function getFirstValue(array,n=1){
+ if(n===0){
+    return [];
+ }
+ return array.slice(0,n);
 }
-console.log(summa); //16
-
-//2.
-let average = summa / 4;
-console.log(average) //4
+console.log(getFirstValue(array));
+console.log(getFirstValue(array, 2));
+console.log(getFirstValue(array,3));
+console.log(getFirstValue(array,4));
+console.log(getFirstValue(array,5));
