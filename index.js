@@ -1,39 +1,30 @@
-function MyArray() {
-  this.length = 0;
+/*
+Знайди Середнє
+Знайти середнє (середнє) списку чисел у масиві.
 
-  this.push = function (value) {
-    for (let i = 0; i < arguments.length; i++) {
-      this[this.length] = arguments[i];
-      this.length++;
-    }
-    return this.length;
-  };
+Інформація
+Щоб знайти середнє (середнє) набору чисел, додайте всі числа разом і поділіть на кількість значень у списку.
 
-  this.pop = function () {
-    if (this.length > 0) {
-      const lastItem = this[this.length - 1];
-      delete this[this.length - 1];
-      this.length--;
-      return lastItem;
-    } else {
-      return undefined;
-    }
-  };
+Для прикладу список 1, 3, 5, 7
 
-  this.forEach = function (callback) {
-    for (let i = 0; i < this.length; i++) {
-      callback(this[i], i, this);
-    }
-  };
+1. Складіть усі числа
+
+1+3+5+7 = 16
+2. Розділіть на кількість значень у списку. У цьому прикладі в списку є 4 номери.
+
+16/4 = 4
+3. Середнє (або середнє) цього списку дорівнює 4
+
+ */
+
+const numbers = [1,3,5,7]
+//1.
+let summa = 0;
+for(let i = 0;i < numbers.length;i++){
+    summa +=numbers[i];
 }
+console.log(summa); //16
 
-const array = new MyArray();
-
-array.push(1, 2, 3, 4, 5, 6, 7);
-console.log(array);
-array.pop();
-console.log(array);
-//Відконсольлогувати квадрати кожного числа в масив array
-array.forEach((item) => {
-  console.log(item ** 2);
-});
+//2.
+let average = summa / 4;
+console.log(average) //4
