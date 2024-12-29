@@ -1,31 +1,12 @@
 
 
-/*Задача 2
-Написати функцію, яка перевіряє чи є переданий їй рядок - паліндромом, не зважаючі на регістр
-паліндром - це коли рядок з обох сторін читається однаково
 
- */
+//Практика
+const array1 = [1,2,3,4,5]
+const array2 = [10,11,12,13,14,15]
+//Задача, потрібно склеїти ці два масиви
+//Не вкористовувати метод конкат
+//Використовувати ...spread - operator
 
-/*Алгоритм рішення
-  1. Приймаємо строку від користувача
-  2. Приводимо строку до нижнього регістру
-  3. Перевернути строку 
-  4. Перевернуту строку перевірити з оригінальною строкою
- */
-  function isPalindrom(string){
-    const newString = string.toLowerCase();
-    console.log(newString)
-    
-    const arrayString = newString.split('').reverse().join('')
-    console.log(arrayString);
-    
-    const result = newString === arrayString;
-    return result
-  }
-  
-  
-  
-  console.log(isPalindrom('Anna'));
-  console.log(isPalindrom('Mama'));
-  console.log(isPalindrom('Barab'));
-  
+const arrayCopy = [...array1,...array2]
+console.log(arrayCopy);
