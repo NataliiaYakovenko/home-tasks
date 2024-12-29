@@ -1,41 +1,16 @@
-// Задача  for...in - 
-//Написати функцію, яка приймає об'єкт і виводить значення всіх властивостей
-// оформленні *...*, ключі формленні "..."
-
-const obj ={
-  key1: 'value1',
-  key2: 'value2',
-  key3: 'value3',
-  key4: 'value4',
-  key5: 'value5',
+// Задача. у нас є об'єкт ключем в якому є день тижня, а значенням плаихни на цей день
+//прийняти через промпт від корстувача назву дня тижня 
+// і виадати у альорт, що заплановано у користувача на цей тиждень
+const obj = {
+  Non:'drive lessons',
+  Tue: 'dantist visit',
+  Wed: 'go to party',
+  Thu: 'hard work',
+  Fri: 'rest',
+  Sat: 'go to park',
 }
-function stylingObject(obj){
-  for(let key in obj){
-      console.log(`"${key}" :>> in *${obj[key]}*`);
-  }
-}
-console.log(stylingObject(obj));
-//--------------------------------------------------
+const nameWeek = prompt('enter week day ( \n Monday = Mon, \n Tuesday = Tue, \n Wed, \n Thu, \n Fri, \n Sat )')
+alert(`On ${nameWeek} you have ${obj[nameWeek]}`)
 
+//alert(obj[nameWeek] ? obj[nameWeek] : 'Error happened') - зробити через тернальний оператор
 
-
-const user ={
-  name: 'Nataliia',
-  surname: 'Yakovenko',
-  age: 41,
-  'favorite color': 'red',
-  movie: 'Pretty woman',
-  avatar: 'http://...........'
-}
-for(let key in user){
-  //console.log(key); варіант 1
-  console.log(`${key} :>> in  ${user[key]}`);
-}
-
-  // синтаксис
-  /*
-  for ( змінна  in  об'єкт){
-  код, що виконується до кожної властивості}
-  змінні - яка буде приймати значення ключів властивостей
-  об'єкт - ключи якого ми хочемо перебрати
-  */
