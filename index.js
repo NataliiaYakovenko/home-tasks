@@ -1,32 +1,50 @@
+// Прототипи Задача
+/* Завдання 1
+Створити функцію - конструктор для сходів (ladder)
+Об'єкт має властивість:
+curentStair - сходинка, на якій ми зараз знаходимиось. Початково = 0
 
- //ПРИКЛАД
- //Є об'єкт газети
+Об'єкт має методи: - метоти запихнути в .prototype
+up() - підіймає на сходинку вище
+down() - опускає на сходинку нижче
+showStair() - показує на якій сходинці ми зараз знаходимось
+ */
+function Labber() {
+  this.curentStair = 0;
+}
 
- const newspaper = {
-  titel: 'News......',
-  articles: [{
-    author: 'Nataliia Yakovenko',
-    date: '25-12-2024',
-    text: 'Lorem'
-  },{
-    author: 'Lidiia Yakovenko',
-    date: '20-04-2024',
-    text: 'Lorem'
-  },{
-    author: 'Olexander Yakovenko',
-    date: '12-10-2024',
-    text: 'Lorem'
-  }],
-  showArticles: function(){
-    this.articles.forEach ((item,index)=>{ 
-      //this.articles  - вказує на масив articles в нашом об'єкті
-      //forEach перебирає об'єкти в масиві articles
-      // в середину forEach передаємо callback
-     console.log(`${this.titel} ${index}-${item.author}`)
-    })
-  }
+function LabberPrototype() {
+  this.up = function () {
+    this.curentStair++;
+    return this;
+  };
+
+  this.down = function () {
+    this.curentStair--;
+    return this;
+  };
+
+  this.showStair = function () {
+    return this.curentStair;
+  };
 
 }
-// у об'єкта newspaper викликаємо метод showArticles
 
-newspaper.showArticles();
+Labber.prototype = new LabberPrototype();
+const labber = new Labber();
+
+/*console.log(labber.up())
+console.log(labber.up())
+console.log(labber.up())        //console.log для першої задачі
+console.log(labber.down())
+console.log(labber.showStair())*/
+
+/*Завдання 2
+Перепишіть методи таким чином щоб було використання ченінгу
+тобто щоб було можна об'єднати виклик методів у ланцюжок
+
+const labber = new Labber()
+Labber.up().up().down().showStair()
+ */
+console.log(labber.up().up().up().down().showStair()); 
+
