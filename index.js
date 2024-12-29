@@ -1,29 +1,49 @@
-// Задача 1 forEach 
-// Дано масив об'єктів
-//Всім користувачам збільшити вік на 1
+// Практика методи масиву splice i slice
+// 1. З масиву [1,2,3,4,5] зробіть масив [1,4,5]
+const array1 = [1, 2, 3, 4, 5];
+array1.splice(1, 2);
+console.log(array1);
+//-----------------------------------------------------------------------------
+// 2. З масиву [1,2,3,4] запишіть новий масив [2,3,4]
+const array2 = [1, 2, 3, 4];
+const array3 = array2.slice(1);
+console.log(array3);
+//-----------------------------------------------------------------------------
+// 3. З масиву [1,2,3,4,5] зробіть масив [1, 'w', 'tr-td', 2,3,4,'vv',5,'aa']
+//Варіант мій
+const array4 = [1, 2, 3, 4, 5];
+array4.splice(2, 4, "w", "tr-td", 2, 3, 4, "vv", 5, "aa");
+console.log(array4);
+//Варіант Роми
+const array5 = [1, 2, 3, 4, 5];
+array5.splice(1,0,'w', 'tr-td');
+array5.splice(6,0,"vv");
+array5.push('aa')
 
-const users = [{
-  name:'Nataliia',
-  lastName:'Yakovenko',
-  age: 41,
-  email: 'yakovenkonatali999@gmail.com',
-},{
-  name:'Roland',
-  lastName:'Simonyan',
-  age: 26,
-  email: 'roland@gmail.com',
-},{
-  name:'Bogdan',
-  lastName:'Horobriy',
-  age: 30,
-  email: 'horobriy@gmail.com',
-}]
-//Варіант1 мій
-users.forEach((item) => item.age += 1)
-console.log(users);
+//-----------------------------------------------------------------------------
 
-//Варіант2 Рома
-function plusOneYear(item){
-  item.age +=1;
+//Задача*
+/*Нишіть функцію, яка приймає масив і перевіряє чи є в масиві два однакових елементів поспіль
+Масив приймаємо, як аргумент функції
+Функція повертає true, якщо є два однакових елемента поспіль
+Функія повертає fals, якщо двох однакових елемента поспіль у масиві не має
+[1,2,3,4,5,]false
+[1,2,2,3,4,]true
+
+Суть вирішення
+Потрібно переглянути масив циклом
+На кожній ітерації циклу порівнювати поточне число з наступним числом у масиві
+якщо число поточне і число наступне співпали  - повертаємо true з функції
+якщо число поточне і число наступне не співпали - нічого не робимо
+ */
+const array = [1, 2, 3, 4, 4];
+
+function checksIdenticalElementsInArray(array) {
+  for (let i = 0; i < array.length; i++) {    // Перевіряємо елементи 
+    if (array[i] === array[i + 1]) {    // Якщо поточний елемент та наступний однакові
+      return true;
+    } 
 }
-users.forEach(plusOneYear)
+return false;
+}
+console.log(checksIdenticalElementsInArray(array));
