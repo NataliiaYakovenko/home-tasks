@@ -1,19 +1,26 @@
+//Задача
+//Створити об'єкт собаки
+//Додати властивості і методи: бігти, спати, гавкати
 
-//Задача функція - конструктор
-/*Створити функцію-конструктор собаки, у якого має бути ім'я, колір, вік
-  Зробіть декілька собак
-*/
-function Dog(name, color,age){
-  this.name = name;
-  this.color = color;
-  this.age = age;
-  this.gav = function(){
-    return this.name +' is gav-gav-gav';
+const dog = {
+  name: 'Sharik',
+  color: 'Black',
+  age: 2,
+  breed: 'Mops',
+  run:function(){
+    return 'I am runing';
+  },
+  sleep: function(){
+    return 'I am sleeping';
+  },
+  gavkat: function(){
+    return 'I am gav-gav-gav'
   }
 }
-const dog1 = new Dog('Archy','grey',3);
-console.log(dog1);
-const dog2 = new Dog('Busia',null,2);
-console.log(dog2);
-const dog3 = new Dog('Jerry','black',null);
-console.log(dog3);
+console.log(dog.name);
+console.log(dog.color);
+console.log(dog.age);
+console.log(dog.breed);
+console.log(dog.run);
+console.log(dog.sleep);
+console.log(dog.gavkat);
