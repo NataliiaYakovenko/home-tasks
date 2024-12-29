@@ -1,60 +1,55 @@
-// ПРАКТИКА МАСИВИ sort
-
-const dogArray = [
-  {
-    nickname: "Tuzic",
-    color: "black",
-    weght: 3,
-    age: 2,
-  },
-  {
-    nickname: "Doly",
-    color: "white",
-    weght: 5,
-    age: 3,
-  },
-  {
-    nickname: "Fagot",
-    color: "black",
-    weght: 9,
-    age: 5,
-  },
-  {
-    nickname: "Stus",
-    color: "black",
-    weght: 15,
-    age: 1,
-  },
-];
-//Задача. Відсортувати собак за вагою на збільшення у порядку зростання
-//variant1
-/*dogArray.sort((dog1, dog2) => {
-  //dog1, dog2 - два сусідніх об'єкта
-  if (dog1.weght < dog2.weght) {
-    // уразі якщо у вес у собаки1 меньше ніж у собаки2
-    return -1;
-  } else {
-    //уразі якщо у вес у собаки1 більше ніж у собаки2
-    return 1;
+/*Задача
+На основі задачі масива users створити новий масив users.
+При цьому об'єкти в новому масиві мають бути у такому іигляді:
+    fullname:'Nataliia Yakovenko',
+    email: 'yakovenkonatali999@gmail.com',
+ */
+    const users = [{
+      name:'Nataliia',
+      lastName:'Yakovenko',
+      age: 41,
+      email: 'yakovenkonatali999@gmail.com',
+  },{
+      name:'Roland',
+      lastName:'Simonyan',
+      age: 26,
+      email: 'roland@gmail.com',
+  },{
+      name:'Bogdan',
+      lastName:'Horobriy',
+      age: 30,
+      email: 'horobriy@gmail.com',
+  }]
+  
+  //Варіант мій
+  function changeValueInObject(user){  //функція буде приймати елемент об'єкта
+      return {                         // повертаємо новий об'єкт
+          fullname: `${user.name} ${user.lastName}`,
+          email: user.email
+      }
   }
-});*/
-
-//variant2
-//dogArray.sort((dog1,dog2)=>{
-    //return dog1.weght - dog2.weght; //від меньшого до більшого
-    //return dog2.weght - dog1.weght; //від більшого до меншого
-//})
-//-----------------------------------------------------------------------
-// Задача. Відсортувати собак від найстаршого до молодшого
-//variant1
-/*dogArray.sort((dog1,dog2)=>{
-if(dog2.age > dog1.age){
-    return 1;
-}else {
-    return-1
+  
+  const newUsers = users.map(changeValueInObject)
+  console.log(newUsers);
+  //----------------------------------------------------------------------------
+  // Задача 2
+  // на основі нашої задачі зменшити вік користувачів
+  
+  function ageDecrement(user){
+      user.age -=1;
+  }
+  users.forEach(ageDecrement)
+  //-------------------------------------------------------------------------------
+  // Задача  map
+// Дано масив 
+//Зробити новий масив, де всі елементи якого = елемент зі сторого масиву + 100
+//variant 1
+const array = [2,44,11,234,8,2,4,1]
+function items(number){
+    return number + 100;
 }
-})*/
-//variant2
-dogArray.sort((dog1,dog2)=>{
-return dog2.age - dog1.age;
-})
+const newArray = array.map(items);
+console.log(newArray);
+
+//variant 1 стрілочна функція
+const newArray1 = array.map ((item)=>item+100);
