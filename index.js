@@ -1,25 +1,26 @@
-/*
-Напишіть функцію для отримання першого елемента(ів) послідовності. 
-Передача параметра n (за замовчуванням=1) поверне перші n елементів послідовності.
 
-Якщо n == 0 повертає порожню послідовність []
-Examples
-var arr = ['a', 'b', 'c', 'd', 'e'];
-first(arr) //=> ['a'];
-first(arr, 2) //=> ['a', 'b']
-first(arr, 3) //=> ['a', 'b', 'c'];
-first(arr, 0) //=> [];
- */
+//Задача1
+//Написати функцію, яка приймає рядок, 
+//в якому кожне слово повинно починається в великої літери
 
-const array = ['a', 'b', 'c', 'd', 'e'];
-function getFirstValue(array,n=1){
- if(n===0){
-    return [];
- }
- return array.slice(0,n);
-}
-console.log(getFirstValue(array));
-console.log(getFirstValue(array, 2));
-console.log(getFirstValue(array,3));
-console.log(getFirstValue(array,4));
-console.log(getFirstValue(array,5));
+function getCapitalLetter(string){
+    //Розбиваємо рядок на окремі слова
+    let words = string.split(' ')
+    console.log(words);
+    //Циклом проходимо по кожному слову і робтмо першу літеру великою
+    for(let i = 0; i < words.length;i++){
+      //перезаписуємо масив//words[i], words - наш масив,[i] - поточна позиція циклу.
+      words[i]=words[i].charAt(0).toUpperCase()+words[i].slice(1);
+                            // words[i] - отримуємо поточне переглядаєме слово
+                            //charAt(0) - отримуємо доступ до першої літери кожного слова
+                            //.toUpperCase() - робить літери великими
+                            //words[i] - беремо поточне переглядаєме слово
+                            //.slice(1) - прикліюємо кожне слово з другої літери            
+    }
+      return console.log(words.join(' '));//переобразовуємо масив в строку(не забуваєио між лапками пробіл)
+  
+  }
+  
+  getCapitalLetter('nataliia is beautiful girl! she lives in zaporizhzha.')
+  getCapitalLetter('It is snow outside')
+  
