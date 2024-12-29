@@ -1,41 +1,32 @@
-//ЗАДАЧІ
+//Задача
+//Створіть функцію, яка приймає число, додає до нього 5 і виводить результат у консоль
 
-// for(початковий стан, умова за якої лічильник повторюється,зміна лічильника на кожній інтерації){
-//  блок коду, який повторюється} 
-
-
-
-//1 Написати функцію, яка обчислює факторіал переданого їй числа,
-//результат роботи функції вивести на консоль
-
-//Факторіал це
-//5!=1*2*3*4*5 = 120
-//10! = 1*2*3*4*5*6*7*8*9*10
-
-//Якщо число від'ємне - поверніть з функції помилку
-//Якщо число = 0, або число = 1 - поверніть з функції 1
-//Знаходимо факторіал...
-
-function factorial(number){
-  let res = 1; // у цій змінній ми будемо накопичувати добуток
-
-  if (number === 0 || number === 1){
-      return 1;
-  } else if (number<0){
-      return null
-  } 
-
-  for(let it = 1; it <= number; it++){
-      res = res * it
-  }
-  return res;
-}
-console.log(factorial);
-
-
-//2. Вивести 10 консольлогів
-
-for(let i = 1; i < 10; i = i + 3){
-  //0 -> 3 -> 6 -> 9 -> 12 (false)
-  console.log(i);
-}
+function summa(number){
+  console.log(number + 5);
+ }
+ summa(5);
+ summa(7);
+ summa(10);
+ 
+ //Варіант2 Roma
+ function addFiveToNumber(number){
+     let result = number + 5;
+     console.log(result);
+     return result;
+ }
+ const addFiveToNumberResult = addFiveToNumber(5);
+ addFiveToNumber('row');
+ 
+ //Задача. Написати функцію, яка складає два числа і повертає результат розрахунку
+ 
+ function addTwoNumbers(num1, num2){
+     const result = num1+num2;
+     return result;
+ }
+ //const functionResult = addTwoNumbers(2,5);
+ //console.log(functionResult);
+ 
+ //Якщо ми хочемо додати дві функції
+ const addTwoNumbersResult = addTwoNumbers(5,5);
+ console.log(addTwoNumbersResult+addFiveToNumberResult);
+ 
