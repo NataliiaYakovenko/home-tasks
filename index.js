@@ -1,31 +1,25 @@
-// Рекурсія
-//3**4 = 3*3**3 =3*3*3**2
-//Число в степені 0 = 1   (3**0 = 1 )
+//Задача
+//Написати функцію для обчислення факторіала.
+//Передбачити, щоб можна було обчислювати !
+//тільки number, прицьому цілі додатні значення
 
-//4! =1*2*3*4 - факторіал
-//0! = 1   
-//4! = 4*3!= 4*3*2! = 4*3*2*1! = 4*3*2*1*0!  0! = 1  
-let i = 0;
-function getFactorial(n){
-    if(n===0){
-        return 1;
+function factorial(n){
+    if(typeof n !== "number"){
+        throw new Error('n must be number')
     }
- return n * getFactorial(n-1)//це є 4*3!
+  if(n<0 || Number.isSafeInteger(n)){  // Безпечне ціле число
+        throw new RangeError('n must be not negative and integer value')
+  }
+ if(n === 0){
+    return 1;
+ }
+ return n*factorial(n-1)
+
 }
-console.log(getFactorial(4))
-
-//Рекурсія обов'язково потрібна містити перевірку if
-//-----------------------------------------------------------------------
-
-// Вивести в консоль для bracketSteq(2)=>(())
-//                       bracketSteq(4)=>(((())))
-
-function bracketSteq(n){
-    if(n===0){
-        return ;
-    }
-    console.log('(');
-    bracketSteq(n-1)
-    console.log(')');
+try{
+    console.log(factorial(-5));
+}catch(error){
+    console.log(err);
 }
-bracketSteq(4)
+
+console.log('hello');
