@@ -1,29 +1,25 @@
 //Задача
-//Написати функцію сум додатніх чисел
-/**
- * Функція знаходить суму двох додатніх чисел
- * @param {number} a число 1
- * @param {number} b  число 2
- * @returns {number} сума
- * @throws {RangeError}  якщо а || b не є цілим числом
- * @throws {TypeError} якщо а || b не є числом
- */
-function sumPositiveNumber(a, b) {
-  if (a < 0 || b < 0) {
-    //повинні викинути помилку
-    const error = new RangeError("Any numbers are less 0");
-    throw error; // return тільки для помилок
-    console.log(error);
+/*
+Напичати клас Worker.
+У працівника є: ім'я, прізвище, ставка за один робочий день,
+ кількість відпрацьованих днів у цьому місяці
+ Метод, який повертає зарплату цього працівника за поточний місяць
+*/
+
+class Worker{
+  constructor(name,lastname,salary1Day,daysOfMonth){
+    this.name = name;
+    this.lastname = lastname;
+    this.salary1Day = salary1Day;
+    this.daysOfMonth = daysOfMonth;
   }
-  if (typeof a !== "number" || typeof b !== "number") {
-    throw new TypeError("It must be number");
+  getSalaryCurrentMonth(){
+     return this.salary1Day * this.daysOfMonth;
   }
-  return a + b;
 }
 
-try {
-  //пропсуємо якийсь код, очикуючі, що тут може виникнути помилка
-  console.log(sumPositiveNumber(2, "3"));
-} catch (error) {
-  console.log(error);
-}
+const worker1 = new Worker('Nataliia','Yakovenko',1200, 24)
+console.log(worker1)
+console.log(worker1.getSalaryCurrentMonth());
+
+
