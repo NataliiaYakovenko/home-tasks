@@ -1,27 +1,37 @@
+
 /*Задача
-Реалізувати клас для телефонів:
-марка, модель, колір, ціна, рік випуску
-реалізувати метод для розрахунку віку телефона
-створити екземпляр класу, викликати для нього метод
+є клач авто
+є клас паливо
+
+Порахувати загальну вагу автомобіля (вага авто + вага палива)
+об'єм * шільність
 */
-class Phone{
-    constructor(brand, model, color, price, year){
-           this.brand = brand;
-           this.model = model;
-           this.color = color;
-           this.price = price;
-           this.year = year;
+class Fuil{
+    constructor(volume,density){
+       this.volume = volume;
+       this.density = density;
     }
-    getAgePhone (){
-       return new Date().getFullYear()-this.year
+    getWeight(){
+      return this.volume * this.density;
     }
-}
-const phone1 = new Phone('samsung', 'galaxy','red',200,2020) 
-const phone2 = new Phone('lg', 'vortex','green',250,2022) 
-
-
-console.log(phone1);
-console.log(phone1.getAgePhone())
-
-console.log(phone2);
-console.log(phone2.getAgePhone())
+  }
+  const benzin = new Fuil(50,0.9)
+  console.log(benzin);
+  console.log(benzin.getWeight());
+  
+  class Avto{
+    constructor(brand,owenWeight, fuil){
+        this.brand = brand;
+        this.owenWeight = owenWeight;
+        this.fuil = fuil;
+    }
+    //метод, який обчислює повну вагу
+    //його власна вагаo wenWeight + вага палива
+    getFullWeght(){
+      return this.owenWeight + this.fuil.getWeight();
+    }
+  }
+  const car = new Avto('Toyota',4000,benzin)
+  console.log(car)
+  console.log(car.getFullWeght());
+  
