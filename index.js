@@ -1,221 +1,104 @@
-/*Задача
-Клас Людина та похідний клас Студент.
-
-1. Створити клас людина з його властивостями
-- ПІБ
-- Дата народження
-- Стать
-
-2. Створити похідний клас Студент, який наслідує властивості класу Людина
-Додайте до класу Студент додаткові властивості
-- Рік всупу
-- Номер залікової книжки
-- Середній бал
-
-3. Реалізуйте наступні методи
-в класі Людина
-- greeting() - метод повертає привітання для людини в залежності від її статі
-(Mr or Mrs)
-
-в класі Студент
--isExcellentStudent() - цей метод перевіряє чи є студент відмінником 
-на основі його середнього балу
-Якщо середній бал студента більше або дорівнює 90, 
-то метод поверне true, в іншому випадку - false
+/*
+Задача 
+1.Створити клас фігури
+   фігура має кількість сторін
+2.створити дочірній клас трикутник
+  трикутник має три сторони(дві сторони і кут з єднання)
+  потрібно отримати суму сторін
+3. створити дочірній  клас квадрата
+    потрібно отримати площу квадрата
+Кожну фігуру перевірити на валідацію сеттери геттери
 */
-
-class Person {
-    constructor(fullName, birthYear, gender) {
-      this.fullName = fullName;
-      this.birthYear = birthYear;
-      this.gender = gender;
+class Figure {
+    constructor(sideQuantity) {
+      this.sideQuantity = sideQuantity;
     }
-    //-----
-    set fullName(value) {
-      if (typeof value !== "string") {
-        throw new TypeError("FullName must be a string");
+  
+    set sideQuantity(value){
+     if(value < 0){
+      throw new RangeError('Side quantity cannot be less 0')
+     }
+     this._sideQuantity = value
+    }
+  
+    get sideQuantity(){
+      return this._sideQuantity
+    }
+  
+    getAera() {}
+  }
+  
+  class Triangle extends Figure {
+    constructor(a, b, angle) {
+      super(3);
+      this.a = a;
+      this.b = b;
+      this.angle = angle;
+    }
+  
+    set a(value) {
+      if (value < 0) {
+        throw new RangeError("Side cannot be less 0");
       }
-      if (value === " ") {
-        throw new RangeError("FullName must not be empty");
+      this._a = value;
+    }
+  
+    get a() {
+      return this._a;
+    }
+  
+    set b(value) {
+      if (value < 0) {
+        throw new RangeError("Side cannot be less 0");
       }
-      this._fullName = value;
+      this._b = value;
+    }
+    get b() {
+      return this._b;
     }
   
-    get fullName() {
-      return this._fullName;
-    }
-    //-----
-    set birthYear(value) {
-      //тут потрібно валідувати дату
-      this._birthYear = value;
-    }
-  
-    get birthYear() {
-      return this._birthYear;
-    }
-    //----
-    set gender(value) {
-      if (typeof value !== "string") {
-        throw new TypeError("Gender must be a string");
+    set angle(value) {
+      if (value < 0) {
+        throw new RangeError("Angle cannot be less 0");
       }
-      this._gender = value;
+      this._angle = value
     }
   
-    get gender() {
-      return this._gender;
+    get angle() {
+      return this._angle;
     }
   
-    greeting() {
-      let prefix; //в цю змінну ми будемо класти або Mr. або Mrs. в залежності від статі
-  
-      if (this.gender === "male") {
-        prefix = "Mr";
-      } else if (this.gender === "female") {
-        prefix = "Mrs";
-      } else {
-        prefix = prompt(`${this.fullName}, how should we address you?`);
-      }
-      return `Hello ${prefix} ${this.fullName}`;
+    getAera() {
+      return this.a * this.b * Math.sin(this.angle);
     }
   }
   
-  class Student extends Person {
-    constructor(
-      fullName,
-      birthYear,
-      gender,
-      admissionYear,
-      studentId,
-      averageGrade
-    ) {
-      super(fullName, birthYear, gender);
-      this.admissionYear = admissionYear;
-      this.studentId = studentId;
-      this.averageGrade = averageGrade;
+  class Square extends Figure {
+    constructor(a) {
+      super(4);
+      this.a = a;
     }
-    //-----
-    set admissionYear(value) {
-      //тут потрібно валідувати дату
-      this._admissionYear = value;
-    }
-  
-    get admissionYear() {
-      return this._admissionYear;
-    }
-    //-----
-    set studentId(value) {
-      //тут потрібно валідувати дату
-      this._studentId = value;
-    }
-  
-    get studentId() {
-      return this._studentId;
-    }
-    //-----
-    set averageGrade(value) {
-      if (typeof value !== "number")
-        throw new TypeError("Average grade must be a number");
-  
-      if (value < 0 || value > 100) {
-        throw new RangeError("Average grade must be from 0 to 100");
+   
+    set a(value){
+      if(value < 0){
+        throw new RangeError('ide cannot be less 0')
       }
-  
-      this._averageGrade = value;
+      this._a = value
     }
   
-    get averageGrade() {
-      return this._averageGrade;
+    get a (){
+      return this._a
     }
   
-    isExcellentStudent() {
-      /*варіант 1
-      if(this.averageGrade >= 90){
-        return true
-      }else{
-        return false
-      }
-        
-     варіант 2 
-     const result = this.averageGrade >=90 ? true : false;   
-     return result;
+    getAera() {
+      return this.a * this.a; //this.a **2
     }
-  
-    варіант 3*/
-      return this.averageGrade >= 90;
-    }
-  
-    //Написати статичний метод
-    //варіант1  reduce
-    static calculateAveregGrade(arrayStudents) {
-      const summa = arrayStudents.reduce((accumulator, student) => {
-        return accumulator + student.averageGrade;
-      }, 0);
-      return summa / arrayStudents.length;
-    }
-  
-    //варіан 2   for
-    /*static calculateAveregGrade(arrayStudents) {
-      
-      if (arrayStudents.length === 0) {
-        return 0;
-      }
-  
-      //перевірити на те, чи об'єкт в середині масиву arrayStudents є екземпляром класу Student
-      
-      
-      let sum = 0;
-      for (let i = 0; i < arrayStudents.length; i++) {
-        sum += arrayStudents[i].averageGrade;
-      }
-      return sum / arrayStudents.length;
-    }*/
-  
-  
-   //варіан 3   forEach
-  /*static calculateAveregGrade(arrayStudents){
-    if(arrayStudents.length === 0){
-    return 0;
-    }
-    let sum = 0;
-    arrayStudents.forEach((student)=>{
-      sum += student.averageGrade;
-    })
-    return sum / arrayStudents.length
-  }*/
-  
-  
-  
   }
   
+  const square = new Square(4);
+  console.log(square);
+  console.log(square.getAera())
   
-  
-  
-  const person1 = new Person("Nataliia Yakovenko", "1983", "female");
-  const person2 = new Person("Evgen Yakovenko", "1976", "male");
-  
-  const student1 = new Student("Den Braun", "1998", "male", 2020, 45678, 95);
-  const student2 = new Student("Boris Jons", "1998", "male", 2020, 114560678, 90);
-  const student3 = new Student(
-    "Fiona Smit",
-    "1995",
-    "female",
-    2020,
-    6766745678,
-    75
-  );
-  const student4 = new Student("Omar Froter", "1989", "male", 2020, 45678, 99);
-  
-  //робимо масив
-  const arrayStudents = [student1, student2, student3, student4];
-  
-  /*Задача реалізувати статичний метод в класі Students
-  Цей метод приймає масив екземплярів класу Students //183 рядок
-  обчислює і повертає як результат роботи середній бал
-  всіх студентів з масиву
-  
-  */
-  
-  //console.log(Student.myStaticMethod(arrayStudents));
-  
-  Student.calculateAveregGrade(arrayStudents);
-  
+  const triangle = new Triangle(5,5,1)
+  console.log(triangle);
+  console.log(triangle.getAera())
