@@ -1,104 +1,44 @@
-/*
-Задача 
-1.Створити клас фігури
-   фігура має кількість сторін
-2.створити дочірній клас трикутник
-  трикутник має три сторони(дві сторони і кут з єднання)
-  потрібно отримати суму сторін
-3. створити дочірній  клас квадрата
-    потрібно отримати площу квадрата
-Кожну фігуру перевірити на валідацію сеттери геттери
-*/
-class Figure {
-    constructor(sideQuantity) {
-      this.sideQuantity = sideQuantity;
+class MyArray {
+    constructor() {
+      this.length = 0; // довжина нашого масиву завжди буде дорівнюати 0 при створені масиву
     }
-  
-    set sideQuantity(value){
-     if(value < 0){
-      throw new RangeError('Side quantity cannot be less 0')
-     }
-     this._sideQuantity = value
-    }
-  
-    get sideQuantity(){
-      return this._sideQuantity
-    }
-  
-    getAera() {}
-  }
-  
-  class Triangle extends Figure {
-    constructor(a, b, angle) {
-      super(3);
-      this.a = a;
-      this.b = b;
-      this.angle = angle;
-    }
-  
-    set a(value) {
-      if (value < 0) {
-        throw new RangeError("Side cannot be less 0");
+    push() {
+      for (let i = 0; i < arguments.length; i++) {
+        this[this.length] = arguments[i]; // в поточну довжину запихуємо значення
+        this.length++; //потрібно збільшити довжуну масива на 1
       }
-      this._a = value;
+      return this.length; //повертаємо поточну довжину масива
     }
   
-    get a() {
-      return this._a;
-    }
-  
-    set b(value) {
-      if (value < 0) {
-        throw new RangeError("Side cannot be less 0");
+    pop() {
+      if (this.length > 0) {
+        //якщо довжина масив більше 0
+        //1. Зберегти останній елемент
+        const lastItem = this[this.length - 1]; //потрібно від поточної довжини масива - 1
+        //2.Видалити останній елемент з масиву
+        delete this[this.length - 1];
+        //3.Після видалення останнього елементу нам потрібно зменшити довжину масиву на 1
+        this.length--;
+        //4. Повернути останній елемент
+        return lastItem;
+      } else {
+        return undefined;
       }
-      this._b = value;
-    }
-    get b() {
-      return this._b;
     }
   
-    set angle(value) {
-      if (value < 0) {
-        throw new RangeError("Angle cannot be less 0");
+    forEach(callback) {
+      for (let i = 0; i < this.length; i++) {
+        callback(this[i], i, this);
       }
-      this._angle = value
-    }
-  
-    get angle() {
-      return this._angle;
-    }
-  
-    getAera() {
-      return this.a * this.b * Math.sin(this.angle);
     }
   }
   
-  class Square extends Figure {
-    constructor(a) {
-      super(4);
-      this.a = a;
-    }
-   
-    set a(value){
-      if(value < 0){
-        throw new RangeError('ide cannot be less 0')
-      }
-      this._a = value
-    }
+  const array1 = new MyArray()
+  console.log(array1.push(1,2,3,4,5));
+  console.log(array1)
+  console.log(array1.pop());
+  console.log(array1)
+  array1.forEach((item)=>{
+    console.log(item**2)});
   
-    get a (){
-      return this._a
-    }
-  
-    getAera() {
-      return this.a * this.a; //this.a **2
-    }
-  }
-  
-  const square = new Square(4);
-  console.log(square);
-  console.log(square.getAera())
-  
-  const triangle = new Triangle(5,5,1)
-  console.log(triangle);
-  console.log(triangle.getAera())
+
