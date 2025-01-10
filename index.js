@@ -1,5 +1,12 @@
-//Задача повернути масив з унікальними (неповторювальних) значенями
-const array = [1,2,3,4,5,6,1,3,5]
-const s3 = new Set(array)
-const array2 =[...s3]
-console.log(array2);
+//Повернути масив унікальних(неповторювальних) імен
+
+
+const user1 =['Bob','Nataliia','Jeck','Bob', 'Jeck']
+const user2 =['Jein','Carl','Roland','Jein','Carl']
+//варіант1
+const userMain =[...new Set([...user1,...user2])]
+console.log(userMain);
+//варіант2
+const userMain1= new Set([...user1,...user2])
+const array3 = [...userMain1]
+console.log(array3);
