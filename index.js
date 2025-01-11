@@ -1,34 +1,69 @@
+//Класи перепризначення методів
+/*
+squirrel(білка): має ім'я, їсть, що дадуть, бігає
+flaingSquirrel(літаюча білка): має розмах крильєв, їсть тільки горіхи,літає
+*/
+class Squirrel {
+  constructor(nickname) {
+    this.nickname = nickname;
+  }
+  set nickname(value) {
+    if (typeof value !== "string") {
+      throw new TypeError("Nickname must be a string.");
+    }
+    if (value === " ") {
+      throw new RangeError("Nickname cannot be empty.");
+    }
+    this._nickname = value;
+  }
+  get nickname() {
+    return this._nickname;
+  }
+  eating(food) {
+    console.log(`Squirrel ${this._nickname} eats ${food}.`);
+  }
+  runing() {
+    console.log(`Squirrel ${this._nickname} runs.`);
+  }
+}
+class FlaingSquirrel extends Squirrel {
+  constructor(nickname, wingSpan) {
+    super(nickname);
+    this.wingSpan = wingSpan;
+  }
+  set wingSpan(value) {
+    if (value === " ") {
+      throw new RangeError("Wing span cannot be empty.");
+    }
+    if (typeof value !== "number") {
+      throw new TypeError("Wing span must be a number.");
+    }
+    this._wingSpan = value;
+  }
 
-//Повернути name які належать окремим маркам телефонів
-//Samsung:["Test0","Test3"]
-//Redmi:["Test1","Test4"]
-//Nokia:["Test2","Test6"]
-const phone2 = [
-  { name: "Test0", brand: "Samsung" },
-  { name: "Test1", brand: "Redmi" },
-  { name: "Test2", brand: "Nokia" },
-  { name: "Test3", brand: "Samsung" },
-  { name: "Test4", brand: "Redmi" },
-  { name: "Test5", brand: "Nokia" },
-];
+  get wingSpan() {
+    return this._wingSpan;
+  }
 
-let phone3 = phone2.map(phone2=>phone2.brand)
-const phoneSet1 = new Set(phone3)
-const array5 = [...phoneSet1]
-console.log(array5);
+  eating() {
+    console.log(`Flaing squirrel ${this._nickname} eats only nuts.`);
+  }
+  runing() {
+    console.log(`Flaing squirrel ${this._nickname} cannot run.`);
+  }
+  
+  flaing(){
+    console.log(`Flaing squirrel ${this._nickname} flaes and has length wind span ${this.wingSpan}`);
+  }
+}
 
-//const usersPhone ={}
-// array5.forEach(b=>(usersPhone[b]=[]))
-//console.log(usersPhone);
-//отримати всі об'єкти де бренд Nokia
-//const userWithNokia = phone2.filter(u=>u.brand === 'Nokia')
-//console.log(userWithNokia);
-//const usersNameWithNokia = userWithNokia.map(u=>u.name)
-//console.log(usersNameWithNokia);
+const squirrel = new Squirrel("Bamby");
+console.log(squirrel);
+squirrel.eating('strawberry');
+squirrel.runing();
 
-  //отримати всі об'єкти де бренд Nokia
-
-  const phoneWithUsers ={}
-  array5.forEach(
-      b=>(phoneWithUsers[b]=phone2.filter(u=>u.brand === b).map(u=>u.name)))
- console.log(phoneWithUsers);
+const flaingSquirrel = new FlaingSquirrel('Leyla',29)
+console.log(flaingSquirrel);
+flaingSquirrel.eating();
+flaingSquirrel.runing();
+flaingSquirrel.flaing();
