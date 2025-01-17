@@ -1,48 +1,15 @@
-//Задача МАР
+// Set - задачі
+
 /*
-є два об'єкти users
-сonst user1 = {
-firstName: 'Alex',
-lastName: 'Doe',
-id: 1,
-
-сonst user1 = {
-firstName: 'John',
-lastName: 'Doe',
-id: 2,
-}
-
-const johnMessages = ['Hello', 'How are you?']
-const alexMessages = ['Hi!', 'I am fine']
-
-Задача. За допомогою Мар зв'язати користувача з його повідомленнями
-щоб за id користувача можна було знайти його повідомлення 
-
-
+Дано масив [2,3,3,5,6,77,77,5,1,1,12,12,13]
+Повернути масив без повторень
 */
+//varsion1
+const set = new Set([2,3,3,5,6,77,77,5,1,1,12,12,13])
+const arraySet = Array.from(set)
+console.log(arraySet);
 
-const user1 = {
-    firstName: 'Alex',
-    lastName: 'Doe',
-    id: 1,
-} 
-    const user2 = {
-    firstName: 'John',
-    lastName: 'Doe',
-    id: 2,
-    }
-    
-    const johnMessages = ['Hello', 'How are you?']
-    const alexMessages = ['Hi!', 'I am fine']
-
-    const getMessage = new Map();
-    getMessage.set(user1.id,johnMessages);
-    getMessage.set(user2.id,alexMessages);
-
-    console.log(getMessage.get(user1.id))
-    console.log(getMessage.get(user2.id))
-
-
-
-
-  
+//varsion2
+const set1 = new Set([2,3,3,5,6,77,77,5,1,1,12,12,13])
+const arraySet1 = [...set]
+console.log(arraySet1)
