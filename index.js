@@ -1,7 +1,7 @@
 
 //Задача Деструктуризація
-//У нас є об'єкт user
-//З використанням деструктуризації отримати значення name,city, email,phone
+//Дестректурузувати масив з об'єкта
+//Задача 2
 const user={
     name: 'Nataliia',
     age: 41,
@@ -11,12 +11,14 @@ const user={
     },
     contacts:{
       email: 'yakovenkonatali@gmail.com',
-      phone:'+30662865135',
+      phone:[+380662865135,+380997865534,+380674532412],
   
     }
   }
-  const{name,adress:{city},contacts:{email,phone}}=user;
-  console.log(name)
-  console.log(city);
-  console.log(email);
-  console.log(phone);
+  const{contacts:{phone:[firstNumber,secondNumber,thirdNumber]}}=user
+  
+  //const[firstNumber,secondNumber,thirdNumber]=phone;
+  console.log(firstNumber);
+  console.log(secondNumber);
+  console.log(thirdNumber);
+  
