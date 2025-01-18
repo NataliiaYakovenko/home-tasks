@@ -1,12 +1,18 @@
+// Деструктуризація вхідних параметрів
+//Деструктуризувати firstName,lastName
 
-//Деструктуризація масивів
-//Масиви надають читкий порядок елементів
-const arr =[1,2,3,4,5,6];
-
-//const firstElement = arr[0]; //- виводимо перший елемент
-//виводимо перший елемент через деструктуризацію масива
-//const[firstElement,secondElement,thirdElement,fourthElement]=arr;
-
-//Якщо нам потрібно тільки перші два елементи масиву
-const[firstElement,secondElement,...restOfArr]=arr;
+function getFullName({firstName,lastName,...restObject}){           //деструктуризуємо, що нам потрібно
+    console.log(restObject)
+    return `${firstName} ${lastName}`
+  };
+  
+  const user ={
+     firstName: 'Nataliia',
+     lastName: 'Yakovenko',
+     age:41,
+     geolocation: '45.56677555.433.222222',
+     browser: 'Ubuntu'
+  }
+  
+  console.log(getFullName(user));
   
