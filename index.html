@@ -8,9 +8,25 @@
 </head>
 <body>
         
-    <form id="userName">
-        <input type="text" placeholder="Type your name" />
-        <button type="submit">Send form</button>
-      </form>
+    <h1>Конвертер валют</h1>
+
+    <form id="currency-converter-form">
+      <label>
+        Сума конвертації:
+        <input type="number" id="amount" min="1"  required>
+      </label>
+  
+      <label>
+        Оберіть валюту:
+        <select id="currency" required>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+        </select>
+      </label>
+  
+      <button type="submit">Конвертувати</button>
+  
+      <div id="result"></div>
+    </form>
 </body>
 </html>
