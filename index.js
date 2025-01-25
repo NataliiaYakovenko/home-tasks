@@ -1,19 +1,20 @@
-//Задача Зробити конвертер з градусів Цельсію на Фарингейти
-//Формула
-//(Температура в градусах Цельсія * 9/5) + 32
+/*
+Створіть кнопку, яка буде змінювати теиу сайту в HTML
 
-const degrees = document.querySelector("#degrees-сelsius");
+JS
+Якщо ви натискаєте на цю кнопку  - на сайті вмикається темний режим
+(для тегу bady встановіть backgroundColor темного кольору
+а для тексту властивіть color встановіть white)
 
-function fahrenheit(event) {
-  event.preventDefault();
+Якщо ви натискаєте на цю кнопку ще раз на сайті вимикається темний режим
+через (toggle)
+*/
+const btn = document.querySelector('#btn');
+const body = document.body;
 
-  const temperature = Number(document.querySelector("#temperature").value);
- 
-  //1°C = (1°C*9/5) + 32 = 33.8
-  const fahrenheitDegrees = (temperature * 9 / 5)  + 32;
-;
-  const result = document.querySelector("#result");
-  result.innerHTML = `${temperature}°C = ${fahrenheitDegrees.toFixed(2)}°F`;
+btn.addEventListener('click', darkMode);
+function darkMode(event){
+  body.classList.toggle('dark-mode')
 }
 
-degrees.addEventListener("submit", fahrenheit);
+
