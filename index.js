@@ -1,20 +1,18 @@
 /*
-Створіть кнопку, яка буде змінювати теиу сайту в HTML
-
-JS
-Якщо ви натискаєте на цю кнопку  - на сайті вмикається темний режим
-(для тегу bady встановіть backgroundColor темного кольору
-а для тексту властивіть color встановіть white)
-
-Якщо ви натискаєте на цю кнопку ще раз на сайті вимикається темний режим
-через (toggle)
+Задача
+1. Ми маємо div
+2. Ми маємо 5 кнопок з різними кольорами
+3. За натисненням на кнопку, фоновий колір div 
+має змінитися на відповідний колір, що вказаний на кнопці
 */
-const btn = document.querySelector('#btn');
-const body = document.body;
+const button = document.querySelectorAll('button');
+const div = document.querySelector('#root')
 
-btn.addEventListener('click', darkMode);
-function darkMode(event){
-  body.classList.toggle('dark-mode')
+// через for перебираємо всі кнопки
+for(let btn of button){
+  btn.addEventListener('click',clickHandler )
 }
 
-
+function clickHandler({target:{dataset:{color}}}){ //деструктуризуємо target/потім деструктуризуємо dataset
+  div.style.backgroundColor = color; //color - color, який прихлдить із об'єкту подій
+}
