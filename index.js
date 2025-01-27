@@ -1,24 +1,49 @@
-/*
-https://cdn.e-pet.com.ua/uploaded/2024/10/27/18/IMG_6436_Original-cGUpvY8x.jpg
+const slides = [
+  {
+    src: 'https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    alt: 'landscape1',
+  },
+  {
+    src: 'https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    alt: 'landscape2',
+  },
+  {
+    src: 'https://images.pexels.com/photos/371589/pexels-photo-371589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    alt: 'landscape3',
+  },
+  {
+    src: 'https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    alt: 'landscape4',
+  },
+];
+ 
+let currentSlideIndex = 0;
 
-https://tvoemisto.tv/media/gallery/full/6/8/68822578388_o.jpg
+//встановити в якості початкового зображення slides[0]
+const slideImage = document.querySelector('img');
+slideImage.src = slides[currentSlideIndex].src;
+slideImage.alt = slides[currentSlideIndex].alt;
 
+const [prevBtn, nextBtn] = document.querySelectorAll('.navBtn');
 
-В HTML ми маємо елемент картинки img
+nextBtn.addEventListener('click', nextSlideHandler);
+function nextSlideHandler(event){
+  if(currentSlideIndex < slides.length-1){
+      currentSlideIndex++
+  }else{
+      currentSlideIndex = 0;
+  }
+  slideImage.src = slides[currentSlideIndex].src;
+  slideImage.alt = slides[currentSlideIndex].alt;
+}
 
-В HTML ми маємо дві кнопки
-Ці кнопки в дата - атрибутах містять посилання на певну картинку(адреса картинки)
-
-За натисненням на відповідну кнопку має відкритись (відобразитись в тезі img) відповідна цій кнопці картинка
-
-*/
-const[btn1,btn2] = document.querySelectorAll('button');
-
-btn1.addEventListener('click',clickHandler);
-btn2.addEventListener('click',clickHandler);
-
-function clickHandler({target}){
-  const img = target.parentNode.children[0];//наш шлях до картинки
-  console.log(target.dataset.src);// шлях до посилань на картинки
-  img.setAttribute('src',target.dataset.src)
+prevBtn.addEventListener('click',prevSlideHandler)
+function prevSlideHandler(event){
+  if(currentSlideIndex > 0){
+      currentSlideIndex--;
+  }else{
+      currentSlideIndex = slides.length - 1;
+  }
+  slideImage.src = slides[currentSlideIndex].src;
+  slideImage.alt = slides[currentSlideIndex].alt;
 }
