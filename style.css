@@ -1,15 +1,13 @@
-/* #root{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-} */
 
 * {
   box-sizing: border-box;
-  margin: 15px;
+  margin: 0;
   padding: 0;
 } 
 
 #todo-list{
+  margin-left: 15px;
+}
+.li{
   margin-left: 15px;
 }

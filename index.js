@@ -45,8 +45,16 @@ function addItem(event) {
   //Логіка створення елементу списку
   const list = document.querySelector("#todo-list");
   const li = document.createElement("li");
+  li.classList.add('li')
   li.textContent = value;
   list.append(li);
+
+    //Створюємо кнопку для видалення
+    const deleteBtn = document.createElement('button')
+    deleteBtn.textContent = 'remove task';
+    deleteBtn.classList.add('remove-btn')
+    deleteBtn.addEventListener('click',deleteHandler)
+    li.append(deleteBtn)
 
   //Інкрементуємо лічильник завдань
   taskCount++;
@@ -55,5 +63,11 @@ function addItem(event) {
   //чистимо форму після відправки
   target.reset()
 }
+
+function deleteHandler({target:{parentNode}}){
+  parentNode.remove()
+  taskCount--;
+  }
+  
 
 
