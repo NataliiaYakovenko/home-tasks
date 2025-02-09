@@ -1,11 +1,23 @@
 "use strict";
 
-/*Задача.
-Потрібно написати функцію, яка вітає user 
-alert('Hello user!')
-Вітати функція має не одразу, а тільки через 8 секунд,
-пісял того, як сторінка завантажиться
+/*
+Задача 
+Написати функцію, яка через кожну секунду буде виводити числа  в консоль з 1 ло 10
+Виконати задачу циклами не можемо
+Потрібно виконанти задачу через інтервали
+Перевірити скільки секунд ми витрачаємо на виконання цієї функції
 */
-const greetingUser = setTimeout(function greetUser(){
-  alert('Hello user!');
-}, 8000)
+
+function counter(){
+  let i = 1;
+  const intervalID = setInterval(()=>{
+     console.log(i++);
+     if(i>10){
+          clearInterval(intervalID)
+          console.timeEnd('timer')
+     }
+  },1000)
+}
+
+console.time('timer') //показує скільки часу витарічаємо на виконання функції
+counter()
