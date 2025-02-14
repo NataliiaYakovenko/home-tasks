@@ -1,60 +1,82 @@
 "use strict";
 
-//відобразити на сторінці поточну температуру з одиницєю виміру
-//відобразити мінусову температуру синім кольором
-// 0 - чорним
-//плюсову температуру до 40 - зеленим
-//температура >= 40 - червоним
-
 /*
-Алгоритм
+https://api.openweathermap.org/data/2.5/weather?q=Zaporizhzhia&appid=f7c576ba3699bdd0b98ddcf196639992&units=metric
 
-Обовєязкові
-1. Створити елемент
-Необхідні
-2. Задати значення атрибута
-3. Якщо необхідно.Додати класи
-4. Додати контент
-5. Додати обробник на якусь подію
-Обовєязкові
-6. Вбудуваи його туди куди потрібно
+f7c576ba3699bdd0b98ddcf196639992
+
+Задача
+Зробити погодний віджет
+Алгоритм вирішення:
+- Зробити верстку елементів, які отримують від користувача дані про місто
+- Отримати дані з API і обробити їх (підготувати дані для відмалювання у вертці)
+- Зробити карту з погодою і відобразити її
 */
-const weatherUrl =
-  "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m";
 
-fetch(weatherUrl)
-  .then((response) => response.json())
-  .then((data) => generateWeather(data))
-  .catch((err) => console.log("error:", err));
+const API_KEY = "f7c576ba3699bdd0b98ddcf196639992";
+const API_BASE = "https://api.openweathermap.org/data/2.5/weather";
 
-//відобразити на сторінці поточну температуру з одиницєю виміру
-//відобразити мінусову температуру синім кольором
-// 0 - чорним
-//плюсову температуру до 40 - зеленим
-//температура >= 40 - червоним
+const btn = document.querySelector(".btn");
 
-function generateWeather(data) {
-  //data.current.temperature_2m = 70 - для тестування температури
+btn.addEventListener("click", buttonClickHandler);
 
-  const currentTemperatureEl = document.createElement("div");
-  currentTemperatureEl.textContent = `${data.current.temperature_2m} ${data.hourly_units.temperature_2m}`;
-  currentTemperatureEl.style.color = calcTemperatureColor(data.current.temperature_2m);
-  
-  const currentWindSpeed = document.createElement("div");
-  currentWindSpeed.textContent = `${data.current.wind_speed_10m} ${data.hourly_units.wind_speed_10m}` ;
-
-  document.body.append(currentTemperatureEl);
-  document.body.append(currentWindSpeed)
+function buttonClickHandler({ target }) {
+  const selectValue = target.previousElementSibling.value;
+  console.log(selectValue);
+  requestApi(selectValue);
 }
 
-function calcTemperatureColor(temperature) {
-  if (temperature < 0) {
-    return "blue";
-  } else if (temperature === 0) {
-    return "black";
-  } else if (temperature > 0 && temperature < 40) {
-    return "green";
-  } else {
-    return "red";
-  }
+function requestApi(cityName) {
+  //Готуємо url
+  const url = `${API_BASE}?q=${cityName}&appid=${API_KEY}&units=metric`;
+  console.log(url);
+
+  //Робимо запит
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      //Відмальовуємо погоду
+      displayWeather(data)
+    
+    });
+}
+
+/*
+<article class="weather">
+        <p>City name: Kyiv</p>
+        <p>Temperature: 7℃</p>
+        <p>Weather description: overcast cloud</p>
+      </article>
+
+*/
+
+function displayWeather(weatherObject){
+  const{name,main:{temp},weather:[{description}]}=weatherObject
+
+  //Створюємо article
+  const article = document.createElement('article')
+  article.classList.add('weather')
+
+  //Створюємо параграф з назвою міста
+  const cityName = document.createElement('p')
+  cityName.append(`City name:${name}`)
+
+  //Створюємо параграф з температурою
+  const temperature = document.createElement('p')
+  temperature.append(`Temperature: ${temp}℃`)
+
+  //Створюємо параграф  з описом погоди
+  const descriptionWeather = document.createElement('p')
+  descriptionWeather.append(`Weather description: ${description}`)
+
+  //До article чіпляємо параграфи, які були створені
+  article.append(cityName,temperature,descriptionWeather)
+
+  //До section чіпляємо article
+  const section = document.querySelector('.wrapper')
+  section.append(article);
+
+
 }
