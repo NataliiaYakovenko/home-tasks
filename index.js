@@ -1,24 +1,62 @@
 "use strict";
 
-//Промісифікувати setTimeout
-//setTimeout(cb,1000)
-//delay(1000).then(cb)
+/*
+https://randomuser.me/
+https://randomuser.me/api/
 
-function delay(ms){
-  function executor(resolve,reject){
-      if(typeof ms !== 'number'){
-         reject (new TypeError('milliseconds must be a number'))
-      }
-      if(ms < 0 || !Number.isInteger(ms)){
-        reject (new RangeError('milliseconds must be more 0 and must be integer'))
-      }
-       setTimeout(resolve,ms)
-     }
+На сторінці є кнопка підвантажити юзера
+При на тиснені на цю кнопку на сторінці повинно додатись картка юзера
+Картка може містити:
+- аватарка
+- ім'я , прізвище
+- імейл
+- адреса
+- день народження
 
-  return new Promise(executor)
+*/
+const card = "https://randomuser.me/api/";
 
-}
-//setTimeout(()=>console.log('action is over'),1000)
-delay(2000)
-.then(()=>console.log('action is over'))
-.catch(error => console.log(error))
+fetch(card)
+  .then((response) => response.json())
+  .then((data) => getInfoUser(data.results[0]))
+  .catch((err) => console.log("error:", err));
+
+function getInfoUser(user) {
+  const userCard = document.querySelector("#user-card");
+  const btn = document.querySelector("button");
+
+  btn.addEventListener("click", function () {
+    appearUserHandler(user);
+  });
+
+
+  function appearUserHandler(user) {
+     userCard.textContent="";
+
+     const img = document.createElement('img');
+     img.src = user.picture.medium;
+     img.classList.add('image-user');
+     userCard.append(img);
+
+     const fullName = document.createElement('h2');
+     fullName.textContent = `${user.name.title} ${user.name.first} ${user.name.last}`;
+     fullName.classList.add('name-user');
+     userCard.append(fullName);
+
+     const email = document.createElement('span');
+     email.textContent = user.email;
+     email.classList.add('email-user');
+     userCard.append(email);
+
+     const adress = document.createElement('span');
+     adress.textContent = `${user.location.street.number} ${user.location.street.name}  ${user.location.city}  ${user.location.country}`
+     adress.classList.add('adress-user');
+     userCard.append(adress);
+
+     const birthday = document.createElement('span');
+     birthday.textContent = new Date(user.dob.date).toLocaleDateString();
+     birthday.classList.add('birthday-user');
+     userCard.append(birthday);
+
+
+  }}
